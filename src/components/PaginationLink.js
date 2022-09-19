@@ -4,11 +4,11 @@ import Pagination from '@mui/material/Pagination';
 import PaginationItem from '@mui/material/PaginationItem';
 
 
-
 function Content() {
     const location = useLocation();
     const query = new URLSearchParams(location.search);
     const page = parseInt(query.get('page') || '1', 10);
+
     return (
         <div
             style={{
@@ -17,13 +17,11 @@ function Content() {
                 marginTop: "20px",
             }}>
             <Pagination
-                style={{ color: "white" }}
                 page={page}
                 count={10}
                 renderItem={(item) => (
                     <PaginationItem
                         style={{
-                            color: "white",
                             fontWeight: "bold",
                         }}
                         component={Link}
