@@ -1,22 +1,45 @@
 import * as React from 'react';
-import { styled, alpha } from '@mui/material/styles';
+import { styled, alpha, createTheme, ThemeProvider } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
-import MenuItem from '@mui/material/MenuItem';
-import Menu from '@mui/material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
-import AccountCircle from '@mui/icons-material/AccountCircle';
+import LoginIcon from '@mui/icons-material/Login';
+import { grey, orange, red } from '@mui/material/colors';
+
+
+const theme = createTheme({
+    palette: {
+        primary: {
+            main: grey[700],
+            light: grey[500],
+            dark: grey[900],
+        },
+        secondary: {
+            main: red[400],
+            light: red[300],
+            dark: red[800],
+        },
+        warning: {
+            main: orange[400]
+        },
+        background: {
+            default: grey[900],
+        },
+        spacing: { xs: 2, sm: 3, md: 5 },
+    }
+})
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
-    backgroundColor: alpha(theme.palette.common.white, 0.15),
+    color: theme.palette.common.white,
+    backgroundColor: alpha(theme.palette.common.black, 0.15),
     '&:hover': {
-        backgroundColor: alpha(theme.palette.common.white, 0.25),
+        backgroundColor: alpha(theme.palette.common.black, 0.35),
     },
     marginRight: theme.spacing(2),
     marginLeft: 0,
@@ -52,120 +75,53 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function AppBarMUI() {
-    const [anchorEl, setAnchorEl] = React.useState(null);
-    const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
-    const isMenuOpen = Boolean(anchorEl);
-    const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
-    const handleProfileMenuOpen = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
-
-    const handleMobileMenuClose = () => {
-        setMobileMoreAnchorEl(null);
-    };
-
-    const handleMenuClose = () => {
-        setAnchorEl(null);
-        handleMobileMenuClose();
-    };
-
-
-
-    const menuId = 'primary-search-account-menu';
-    const renderMenu = (
-        <Menu
-            anchorEl={anchorEl}
-            anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-            }}
-            id={menuId}
-            keepMounted
-            transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-            }}
-            open={isMenuOpen}
-            onClose={handleMenuClose}
-        >
-            <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-            <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-        </Menu>
-    );
-
-    const mobileMenuId = 'primary-search-account-menu-mobile';
-    const renderMobileMenu = (
-        <Menu
-            anchorEl={mobileMoreAnchorEl}
-            anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-            }}
-            id={mobileMenuId}
-            keepMounted
-            transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-            }}
-            open={isMobileMenuOpen}
-            onClose={handleMobileMenuClose}
-        >
-            <MenuItem onClick={handleProfileMenuOpen}>
-                <IconButton
-                    size="large"
-                    aria-label="account of current user"
-                    aria-controls="primary-search-account-menu"
-                    aria-haspopup="true"
-                    color="inherit"
-                >
-                    <AccountCircle />
-                </IconButton>
-                <p>Profile</p>
-            </MenuItem>
-        </Menu>
-    );
 
     return (
-        <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="static">
-                <Toolbar>
-                    <Typography
-                        variant="h6"
-                        noWrap
-                        component="div"
-                        sx={{ display: { xs: 'none', sm: 'block' } }}
-                    >
-                        Job Routing
-                    </Typography>
-                    <Search>
-                        <SearchIconWrapper>
-                            <SearchIcon />
-                        </SearchIconWrapper>
-                        <StyledInputBase
-                            placeholder="Search…"
-                            inputProps={{ 'aria-label': 'search' }}
-                        />
-                    </Search>
-                    <Box sx={{ flexGrow: 1 }} />
-                    <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                        <IconButton
-                            size="large"
-                            edge="end"
-                            aria-label="account of current user"
-                            aria-controls={menuId}
-                            aria-haspopup="true"
-                            onClick={handleProfileMenuOpen}
-                            color="inherit"
+        <Box sx={{ flexGrow: 1 }} >
+            <ThemeProvider theme={theme} >
+                <AppBar position="relative" sx={{ mb: { xs: 3, sm: 3, md: 5 } }} >
+                    <Toolbar sx={{ justifyContent: "center" }} >
+                        <Typography
+                            variant="h6"
+                            noWrap
+                            component="div"
+                            sx={{ display: { xs: 'none', sm: 'block' }, flexGrow: 1, textAlign: "right", fontWeight: "bold" }}
                         >
-                            <AccountCircle />
-                        </IconButton>
-                    </Box>
-                </Toolbar>
-            </AppBar>
-            {renderMobileMenu}
-            {renderMenu}
+                            Job Routing
+                        </Typography>
+                        <Search
+                            sx={{ flexGrow: 1 }}
+                        >
+                            <SearchIconWrapper>
+                                <SearchIcon />
+                            </SearchIconWrapper>
+                            <StyledInputBase
+                                placeholder="Search…"
+                                inputProps={{ 'aria-label': 'search' }}
+                            />
+                        </Search>
+                        <Box sx={{ flexGrow: 2 }} />
+                        <Box sx={{ display: { md: 'flex' }, flexGrow: 1 }}>
+                            <IconButton
+                                size="large"
+                                edge="end"
+                                aria-label="show login"
+                                aria-haspopup="true"
+                                color="inherit"
+                            >
+                                <LoginIcon sx={{ mx: 1 }} />
+                                <Typography
+                                    color="inherit"
+                                    sx={{ fontWeight: "bold" }}
+                                >
+                                    Sign in
+                                </Typography>
+                            </IconButton>
+                        </Box>
+                    </Toolbar>
+                </AppBar>
+            </ThemeProvider>
         </Box>
     );
 }
