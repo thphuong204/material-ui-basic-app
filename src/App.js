@@ -44,7 +44,7 @@ const theme = createTheme({
 })
 
 function App() {
-  const [currentPage, setCurrentPage] = useState(2);
+  const [currentPage, setCurrentPage] = useState(1);
   let pageArrayData = [];
   const size = 5;
   if (currentPage >= 2) {
