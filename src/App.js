@@ -46,6 +46,8 @@ const theme = createTheme({
 function App() {
   const [currentPage, setCurrentPage] = useState(1);
   let pageArrayData = [];
+  setCurrentPage(1);
+
   const size = 5;
   if (currentPage >= 2) {
     pageArrayData = data.slice(
