@@ -41,12 +41,12 @@ const JobCardsList = () => {
             spacing={{ xs: 2, sm: 3, md: 5 }}
             columns={{ xs: 12, sm: 4, md: 4 }}
             sx={{ justifyContent: "center" }}
-            width={{ xs: "400px", md: "600px", lg: "1100px" }}
+            width={{ xs: "400px", md: "700px", lg: "1100px" }}
         >
             {pageArrayData.map((jobObject) => {
                 return (
                     <Grid item key={jobObject.id}>
-                        <JobCardMUI jobObject={jobObject} />
+                        <JobCardMUI jobObject={jobObject} skillsList={jobObject.skills.slice(0, 4)} />
                     </Grid>
                 )
             })}
@@ -55,13 +55,13 @@ const JobCardsList = () => {
 }
 
 
-export function JobCardMUI({ jobObject }) {
+export function JobCardMUI({ jobObject, skillsList }) {
 
     return (
         <ThemeProvider theme={theme}>
             <Card sx={{
                 backgroundColor: "primary.main",
-                width: { xs: "300px", md: "300px", lg: "300px" },
+                width: { xs: "250px", md: "300px", lg: "300px" },
             }}
             >
                 <CardContent>
@@ -94,7 +94,7 @@ export function JobCardMUI({ jobObject }) {
                             height: "48px",
                         }}
                     >
-                        {jobObject.skills.map((skill) => {
+                        {skillsList.map((skill) => {
                             return (
                                 <Chip key={skill}
                                     label={
