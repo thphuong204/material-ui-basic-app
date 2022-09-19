@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { styled, alpha, createTheme, ThemeProvider } from '@mui/material/styles';
+import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -8,30 +8,7 @@ import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import LoginIcon from '@mui/icons-material/Login';
-import { grey, orange, red } from '@mui/material/colors';
 
-
-const theme = createTheme({
-    palette: {
-        primary: {
-            main: grey[700],
-            light: grey[500],
-            dark: grey[900],
-        },
-        secondary: {
-            main: red[400],
-            light: red[300],
-            dark: red[800],
-        },
-        warning: {
-            main: orange[400]
-        },
-        background: {
-            default: grey[900],
-        },
-        spacing: { xs: 2, sm: 3, md: 5 },
-    }
-})
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -79,53 +56,51 @@ export default function AppBarMUI() {
 
     return (
         <Box sx={{ flexGrow: 1 }} >
-            <ThemeProvider theme={theme} >
-                <AppBar position="relative" sx={{ mb: { xs: 3, sm: 3, md: 5 } }} >
-                    <Toolbar sx={{ justifyContent: "center" }} >
-                        <Typography
-                            variant="h6"
-                            noWrap
-                            component="div"
-                            sx={{
-                                textAlign: "right",
-                                fontWeight: "bold",
-                                whiteSpace: "normal",
-                                wordBreak: "break-word",
-                                marginRight: "10px"
-                            }}
+            <AppBar position="relative" sx={{ mb: { xs: 3, sm: 3, md: 5 } }} >
+                <Toolbar sx={{ justifyContent: "center" }} >
+                    <Typography
+                        variant="h6"
+                        noWrap
+                        component="div"
+                        sx={{
+                            textAlign: "right",
+                            fontWeight: "bold",
+                            whiteSpace: "normal",
+                            wordBreak: "break-word",
+                            marginRight: "10px"
+                        }}
+                    >
+                        Job Routing
+                    </Typography>
+                    <Search style={{ width: "150px" }}>
+                        <SearchIconWrapper>
+                            <SearchIcon />
+                        </SearchIconWrapper>
+                        <StyledInputBase
+                            placeholder="Search…"
+                            inputProps={{ 'aria-label': 'search' }}
+                        />
+                    </Search>
+                    <Box sx={{ flexGrow: 1 }} />
+                    <Box sx={{ display: { md: 'flex' } }}>
+                        <IconButton
+                            size="large"
+                            edge="end"
+                            aria-label="show login"
+                            aria-haspopup="true"
+                            color="inherit"
                         >
-                            Job Routing
-                        </Typography>
-                        <Search style={{ width: "150px" }}>
-                            <SearchIconWrapper>
-                                <SearchIcon />
-                            </SearchIconWrapper>
-                            <StyledInputBase
-                                placeholder="Search…"
-                                inputProps={{ 'aria-label': 'search' }}
-                            />
-                        </Search>
-                        <Box sx={{ flexGrow: 1 }} />
-                        <Box sx={{ display: { md: 'flex' } }}>
-                            <IconButton
-                                size="large"
-                                edge="end"
-                                aria-label="show login"
-                                aria-haspopup="true"
+                            <LoginIcon sx={{ mx: 1 }} />
+                            <Typography
                                 color="inherit"
+                                sx={{ fontWeight: "bold" }}
                             >
-                                <LoginIcon sx={{ mx: 1 }} />
-                                <Typography
-                                    color="inherit"
-                                    sx={{ fontWeight: "bold" }}
-                                >
-                                    Sign in
-                                </Typography>
-                            </IconButton>
-                        </Box>
-                    </Toolbar>
-                </AppBar>
-            </ThemeProvider>
+                                Sign in
+                            </Typography>
+                        </IconButton>
+                    </Box>
+                </Toolbar>
+            </AppBar>
         </Box>
     );
 }
