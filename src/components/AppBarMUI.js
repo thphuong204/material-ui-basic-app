@@ -86,13 +86,17 @@ export default function AppBarMUI() {
                             variant="h6"
                             noWrap
                             component="div"
-                            sx={{ display: { xs: 'none', sm: 'block' }, flexGrow: 1, textAlign: "right", fontWeight: "bold" }}
+                            sx={{
+                                textAlign: "right",
+                                fontWeight: "bold",
+                                whiteSpace: "normal",
+                                wordBreak: "break-word",
+                                marginRight: "10px"
+                            }}
                         >
                             Job Routing
                         </Typography>
-                        <Search
-                            sx={{ flexGrow: 1 }}
-                        >
+                        <Search style={{ width: "150px" }}>
                             <SearchIconWrapper>
                                 <SearchIcon />
                             </SearchIconWrapper>
@@ -101,8 +105,8 @@ export default function AppBarMUI() {
                                 inputProps={{ 'aria-label': 'search' }}
                             />
                         </Search>
-                        <Box sx={{ flexGrow: 2 }} />
-                        <Box sx={{ display: { md: 'flex' }, flexGrow: 1 }}>
+                        <Box sx={{ flexGrow: 1 }} />
+                        <Box sx={{ display: { md: 'flex' } }}>
                             <IconButton
                                 size="large"
                                 edge="end"
