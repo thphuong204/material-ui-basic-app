@@ -1,6 +1,6 @@
 
 import { createTheme, CssBaseline, GlobalStyles, ThemeProvider } from '@mui/material';
-import { grey, red } from '@mui/material/colors';
+import { grey, orange, red } from '@mui/material/colors';
 import React, { useState, createContext } from 'react';
 import AppBarMUI from './components/AppBarMUI';
 import JobCardsList from './components/JobCardsList';
@@ -21,11 +21,26 @@ const theme = createTheme({
       light: red[300],
       dark: red[800],
     },
+    warning: {
+      main: orange[400]
+    },
     background: {
       default: grey[900],
     },
     spacing: { xs: 2, sm: 3, md: 5 },
-  }
+  },
+  components: {
+    // Name of the component
+    MuiPaginationItem: {
+      styleOverrides: {
+        // Name of the slot
+        root: {
+          // Some CSS
+          color: 'white',
+        },
+      },
+    },
+  },
 })
 
 function App() {
