@@ -88,15 +88,17 @@ export function JobCardMUI({ jobObject, skillsList }) {
                         spacing={1}
                         columns={{ xs: 6, md: 4 }}
                         sx={{
-                            justifyContent: "space-around",
                             flexWrap: "wrap",
                             my: 1,
                             height: "48px",
+                            alignItems: "center",
+                            justifyContent: "center",
                         }}
                     >
                         {skillsList.map((skill) => {
                             return (
-                                <Chip key={skill}
+                                <Chip
+                                    key={skill}
                                     label={
                                         <Box sx={{
                                             whiteSpace: "normal",
@@ -108,6 +110,7 @@ export function JobCardMUI({ jobObject, skillsList }) {
                                     size="small"
                                     style={{
                                         marginBottom: "8px",
+                                        marginRight: "8px",
                                         marginLeft: "0",
                                         maxWidth: "100px",
                                         height: "24px",
