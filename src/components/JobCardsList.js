@@ -67,13 +67,17 @@ export function JobCardMUI({ jobObject }) {
                 <CardContent>
                     <Typography
                         gutterBottom
-                        variant="h5"
+                        variant="h6"
                         component="div"
                         sx={{
                             color: "white",
                             fontWeight: "bold",
                             my: 1,
-                            textAlign: "center"
+                            textAlign: "center",
+                            height: "64px",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
                         }}
                     >
                         {jobObject.title}
