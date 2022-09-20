@@ -25,7 +25,7 @@ function Content({ handlePageArrayData }) {
                             fontWeight: "bold",
                         }}
                         component={Link}
-                        to={`/jobs${item.page === 1 ? '' : `/page=${item.page}`}`}
+                        to={`/jobs${item.page === 1 ? '' : `?page=${item.page}`}`}
                         {...item}
                         onClick={(e) => handlePageArrayData(e)}
                     />

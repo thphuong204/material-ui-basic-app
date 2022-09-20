@@ -8,11 +8,20 @@ import { Chip, Divider, Stack, Grid } from '@mui/material';
 import { Box } from '@mui/system';
 import { CartContext } from '../App';
 import data from '../data.json';
+import { useSearchParams } from 'react-router-dom';
+
+const fetchPageArrayData = (page) => {
+    const size = 5;
+    console.log('currentPageSize', size)
+    return data.slice((page - 1) * size, page * size);
+}
 
 
 const JobCardsList = () => {
-    const pageArrayData = useContext(CartContext);
-    console.log("jobcard array data", pageArrayData);
+
+    const [searchParams, setSearchParams] = useSearchParams();
+    const page = searchParams.get("page") || 1;
+    const pageArrayData = fetchPageArrayData(page);
 
     return (
         <Grid

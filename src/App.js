@@ -47,11 +47,7 @@ const theme = createTheme({
 
 function App() {
   const [currentPage, setCurrentPage] = useState(1);
-  const [pageArrayData, setPageArrayData] = useState(() => {
-    const limitedData = data.slice(0, 5)
-    return limitedData;
-  }
-  );
+  const [pageArrayData, setPageArrayData] = useState(data.slice(0, 5));
 
   console.log(pageArrayData);
 
@@ -63,21 +59,6 @@ function App() {
   }
 
   console.log("length", data.length);
-
-  const handlePageArrayData = (pageNumber) => {
-    const size = 5;
-    console.log("text",);
-    setCurrentPage(pageNumber);
-    // setCurrentPage(parseInt(e.target.innerText));
-    if (currentPage >= 2) {
-      setPageArrayData(data.slice(
-        (currentPage - 1) * size, currentPage * size
-      ))
-    } else {
-      setPageArrayData(data.slice(0, currentPage * size))
-    }
-  }
-
 
   return (
     <CartContext.Provider value={pageArrayData}>
@@ -94,7 +75,7 @@ function App() {
             >
               <Outlet />
             </div>
-            <PaginationLink onClick={handlePageArrayData} />
+            <PaginationLink />
           </div >
           {result}
         </ThemeProvider>

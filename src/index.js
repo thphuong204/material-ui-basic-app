@@ -18,8 +18,6 @@ root.render(
         <Route path="" element={<JobCardsList />} />
         <Route path="home" element={<JobCardsList />} />
         <Route path="jobs" element={<JobCardsList />} />
-        <Route path="jobs/page=2" element={<JobCardsList />} />
-        <Route path="jobs/page=3" element={<JobCardsList />} />
       </Route>
       <Route path="signin" element={<LogInSide />} />
     </Routes>
