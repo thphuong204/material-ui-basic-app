@@ -44,7 +44,7 @@ const JobCardsList = () => {
                 {pageArrayData.map((jobObject) => {
                     return (
                         <Grid item key={jobObject.id}>
-                            <JobCardMUI jobObject={jobObject} skillsList={jobObject.skills.slice(0, 4)} />
+                            <JobCardMUI jobObject={jobObject} skillsList={jobObject.skills.slice(0, 4)} onLearnMoreClick={(jobId) => setSelectedJobId(jobId)} />
                         </Grid>
                     )
                 })}
@@ -55,7 +55,7 @@ const JobCardsList = () => {
 }
 
 
-export function JobCardMUI({ jobObject, skillsList }) {
+export function JobCardMUI({ jobObject, skillsList, onLearnMoreClick }) {
     // const handleDetailJobCardClick = useContext(());
 
     return (
@@ -141,7 +141,7 @@ export function JobCardMUI({ jobObject, skillsList }) {
             <CardActions sx={{ justifyContent: "center" }}>
                 <Button
                     id={jobObject.id}
-                    onClick={(e) => console.log(e)}
+                    onClick={() => onLearnMoreClick(jobObject.id)}
                     size="small"
                     sx={{
                         backgroundColor: "orange",
