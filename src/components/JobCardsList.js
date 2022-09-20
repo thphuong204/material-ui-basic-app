@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -9,6 +9,8 @@ import { Box } from '@mui/system';
 import { CartContext } from '../App';
 import data from '../data.json';
 import { useSearchParams } from 'react-router-dom';
+import { DetailJobCard } from './DetailJobCard';
+import SelectedJobContext from '../contexts/SelectedJobContext';
 
 const fetchPageArrayData = (page) => {
     const size = 5;
@@ -23,22 +25,32 @@ const JobCardsList = () => {
     const page = searchParams.get("page") || 1;
     const pageArrayData = fetchPageArrayData(page);
 
+    const [selectedJobId, setSelectedJobId] = useState("_cx62grqgd");
+
     return (
-        <Grid
-            container
-            spacing={{ xs: 2, sm: 3, md: 5 }}
-            columns={{ xs: 12, sm: 4, md: 4 }}
-            sx={{ justifyContent: "center" }}
-            width={{ xs: "400px", md: "700px", lg: "1100px" }}
-        >
-            {pageArrayData.map((jobObject) => {
-                return (
-                    <Grid item key={jobObject.id}>
-                        <JobCardMUI jobObject={jobObject} skillsList={jobObject.skills.slice(0, 4)} />
-                    </Grid>
-                )
-            })}
-        </Grid>
+
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <SelectedJobContext.Provider value={selectedJobId}>
+                <DetailJobCard style={{ zIndex: '1' }} />
+            </SelectedJobContext.Provider>
+
+            <Grid
+                container
+                spacing={{ xs: 2, sm: 3, md: 5 }}
+                columns={{ xs: 12, sm: 4, md: 4 }}
+                sx={{ justifyContent: "center" }}
+                width={{ xs: "400px", md: "700px", lg: "1100px" }}
+            >
+                {pageArrayData.map((jobObject) => {
+                    return (
+                        <Grid item key={jobObject.id}>
+                            <JobCardMUI jobObject={jobObject} skillsList={jobObject.skills.slice(0, 4)} />
+                        </Grid>
+                    )
+                })}
+            </Grid>
+
+        </div>
     )
 }
 

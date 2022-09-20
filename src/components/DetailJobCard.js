@@ -1,7 +1,15 @@
+import { Box, Card, CardContent, Chip, Divider, Stack, Typography } from '@mui/material';
 import React, { useContext, useState } from 'react';
+import SelectedJobContext from '../contexts/SelectedJobContext';
+import data from '../data.json';
 
 export function DetailJobCard() {
- const result = useContext(result);
+
+
+    const selectedJobId = useContext(SelectedJobContext);
+    console.log('selectedJobId', selectedJobId)
+    const selectedJob = data.find(item => item.id === selectedJobId);
+    console.log('selectedJob', selectedJob);
 
     return (
         <Card sx={{
@@ -26,7 +34,7 @@ export function DetailJobCard() {
                         justifyContent: "center",
                     }}
                 >
-                    {result.title}
+                    {selectedJob.title}
                 </Typography>
                 <Divider variant="middle" color="white" sx={{ my: 1 }} />
                 <Stack
@@ -41,7 +49,7 @@ export function DetailJobCard() {
                         justifyContent: "center",
                     }}
                 >
-                    {result.skills.slice(0,4).map((skill) => {
+                    {selectedJob.skills?.slice(0, 4).map((skill) => {
                         return (
                             <Chip
                                 key={skill}
@@ -81,10 +89,10 @@ export function DetailJobCard() {
                         overflow: "auto",
                     }}
                 >
-                    {result.description}
+                    {selectedJob.description}
                 </Typography>
             </CardContent>
-        
+
         </Card>
     );
 }
