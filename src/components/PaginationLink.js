@@ -4,7 +4,7 @@ import Pagination from '@mui/material/Pagination';
 import PaginationItem from '@mui/material/PaginationItem';
 
 
-function Content() {
+function Content({ handlePageArrayData }) {
     const location = useLocation();
     const query = new URLSearchParams(location.search);
     const page = parseInt(query.get('page') || '1', 10);
@@ -18,15 +18,16 @@ function Content() {
             }}>
             <Pagination
                 page={page}
-                count={10}
+                count={3}
                 renderItem={(item) => (
                     <PaginationItem
                         style={{
                             fontWeight: "bold",
                         }}
                         component={Link}
-                        to={`/jobs${item.page === 1 ? '' : `?page=${item.page}`}`}
+                        to={`/jobs${item.page === 1 ? '' : `/page=${item.page}`}`}
                         {...item}
+                        onClick={(e) => handlePageArrayData(e)}
                     />
                 )}
             />

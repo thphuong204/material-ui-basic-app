@@ -1,46 +1,13 @@
 import React, { useContext, useState } from 'react';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import { Chip, Divider, Stack, Grid } from '@mui/material';
-import { Box } from '@mui/system';
-import { CartContext } from '../App';
-import data from '../data.json';
 
-
-const JobCardsList = () => {
-    const pageArrayData = useContext(CartContext);
-    console.log("jobcard array data", pageArrayData);
-
-    return (
-        <Grid
-            container
-            spacing={{ xs: 2, sm: 3, md: 5 }}
-            columns={{ xs: 12, sm: 4, md: 4 }}
-            sx={{ justifyContent: "center" }}
-            width={{ xs: "400px", md: "700px", lg: "1100px" }}
-        >
-            {pageArrayData.map((jobObject) => {
-                return (
-                    <Grid item key={jobObject.id}>
-                        <JobCardMUI jobObject={jobObject} skillsList={jobObject.skills.slice(0, 4)} />
-                    </Grid>
-                )
-            })}
-        </Grid>
-    )
-}
-
-
-export function JobCardMUI({ jobObject, skillsList }) {
-    // const handleDetailJobCardClick = useContext(());
+export function DetailJobCard() {
+ const result = useContext(result);
 
     return (
         <Card sx={{
             backgroundColor: "primary.main",
             width: { xs: "250px", md: "300px", lg: "300px" },
+            zIndex: "5",
         }}
         >
             <CardContent>
@@ -59,7 +26,7 @@ export function JobCardMUI({ jobObject, skillsList }) {
                         justifyContent: "center",
                     }}
                 >
-                    {jobObject.title}
+                    {result.title}
                 </Typography>
                 <Divider variant="middle" color="white" sx={{ my: 1 }} />
                 <Stack
@@ -74,7 +41,7 @@ export function JobCardMUI({ jobObject, skillsList }) {
                         justifyContent: "center",
                     }}
                 >
-                    {skillsList.map((skill) => {
+                    {result.skills.slice(0,4).map((skill) => {
                         return (
                             <Chip
                                 key={skill}
@@ -114,28 +81,10 @@ export function JobCardMUI({ jobObject, skillsList }) {
                         overflow: "auto",
                     }}
                 >
-                    {jobObject.description}
+                    {result.description}
                 </Typography>
             </CardContent>
-            <CardActions sx={{ justifyContent: "center" }}>
-                <Button
-                    id={jobObject.id}
-                    onClick={(e) => console.log(e)}
-                    size="small"
-                    sx={{
-                        backgroundColor: "orange",
-                        fontWeight: "bold",
-                        borderRadius: "5px",
-                        color: "black",
-                        marginBottom: "10px"
-
-                    }}
-                >
-                    Learn More
-                </Button>
-            </CardActions>
+        
         </Card>
     );
 }
-
-export default JobCardsList;

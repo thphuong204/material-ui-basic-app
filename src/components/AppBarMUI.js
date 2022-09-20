@@ -8,6 +8,7 @@ import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import LoginIcon from '@mui/icons-material/Login';
+import { Navigate } from "react-router-dom";
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -89,6 +90,7 @@ export default function AppBarMUI() {
                             aria-label="show login"
                             aria-haspopup="true"
                             color="inherit"
+                            onClick={(e) => { console.log(e.target.value) }}
                         >
                             <LoginIcon sx={{ mx: 1 }} />
                             <Typography
