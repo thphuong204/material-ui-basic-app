@@ -10,6 +10,8 @@ import data from '../data.json';
 import { useSearchParams } from 'react-router-dom';
 import SetSelectedJobContext from '../contexts/SetSelectedJobContext';
 import SetIsActiveDetailJobCard from '../contexts/SetIsActiveDetailJobCard';
+import { isLoggedIn } from '../apis/auth';
+import SetIsActiveLogIn from '../contexts/SetIsActiveLogIn';
 
 const fetchPageArrayData = (page) => {
     const size = 5;
@@ -17,7 +19,7 @@ const fetchPageArrayData = (page) => {
 }
 // filter(item => item.title.contains(query) || item.description.contains(query))
 
-const JobCardsList = () => {
+const JobCardsList = ({ }) => {
 
     const [searchParams, setSearchParams] = useSearchParams();
     let searchParams1 = searchParams;
@@ -27,6 +29,14 @@ const JobCardsList = () => {
 
     const setSelectedJobId = useContext(SetSelectedJobContext);
     const setIsActiveDetailJobCard = useContext(SetIsActiveDetailJobCard);
+
+    const onLearnMoreClick = (setSelectedJobId) => {
+        if (!isLoggedIn()) {
+
+        }
+
+        return (jobId) => setSelectedJobId(jobId);
+    }
 
     return (
         <>
@@ -43,7 +53,7 @@ const JobCardsList = () => {
                             <JobCardMUI
                                 jobObject={jobObject}
                                 skillsList={jobObject.skills.slice(0, 4)}
-                                onLearnMoreClick={(jobId) => setSelectedJobId(jobId)}
+                                onLearnMoreClick={() => onLearnMoreClick(setSelectedJobId)}
                                 onToggleActive={() => setIsActiveDetailJobCard(true)}
                             />
                         </Grid>

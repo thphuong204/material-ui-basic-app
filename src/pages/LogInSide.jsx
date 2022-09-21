@@ -1,135 +1,123 @@
-// import React from "react";
-// // import users from "./../../data/users";
-// // import image from "./Images/image.jpg";
-// import {Avatar,Button,CssBaseline,TextField,FormControlLabel, Checkbox,Link,Paper,Box,Typography,Grid } from "@mui/material";
-// import authService from "./../service/authService";
+import React, { useContext, useState } from "react";
+// import users from "./../../data/users";
+// import image from "./Images/image.jpg";
+import {Avatar,Button,CssBaseline,TextField,FormControlLabel, Checkbox,Link,Paper,Box,Typography,Grid } from "@mui/material";
+import authService from "./../service/authService";
+import SetIsActiveLogIn from "../contexts/SetIsActiveLogIn";
+import IsActiveLogIn from "../contexts/IsActiveLogIn";
+import { login } from "../apis/auth";
 
-// function Copyright() {
-//   return (
-//     <Typography variant="body2" color="textSecondary" align="center">
-//       {"Copyright © "}
-//       <Link color="inherit" href="https://material-ui.com/">
-//         Your Website
-//       </Link>{" "}
-//       {new Date().getFullYear()}
-//       {"."}
-//     </Typography>
-//   );
-// }
-
-
-// export default function LogInSide(props) {
-//   const users = [
-
-//     {username:"ankur", password:"123456", type:"buyer"},
-//     {username:"Soap_McTive", password:"23449$#@!",type:"seller"}
-    
-//     ];
-
-//   if(authService.isLoggedIn()){
-
-//     props.history.push("./home");
-
-//   }
+function Copyright() {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {"Copyright © "}
+      <Link color="inherit" href="https://material-ui.com/">
+        Your Website
+      </Link>{" "}
+      {new Date().getFullYear()}
+      {"."}
+    </Typography>
+  );
+}
 
 
+export default function LogInSide({history, setIsActiveLogin}) {
 
-//   const [account, setAccount] = React.useState({username:"",password:""});
+  const [username, setUsername] = useState();
+  const [password, setPassword] = useState();
 
-//   const handelAccount = (property,event)=>{
+  if(authService.isLoggedIn()){
 
-//     const accountCopy = {...account};
-//     accountCopy[property] = event.target.value;
+    history.push("./home");
 
-//     setAccount(accountCopy);
+  }
 
-//   }
-
-//   const isVarifiedUser=(username, password)=>{
-
-//     return users.find((user)=> user.username === username && user.password === password);
-
-//   };
+  const isActiveLogIn = useContext(IsActiveLogIn);
 
 
-//   const handelLogin = ()=>{
-//       if(isVarifiedUser(account.username,account.password)){
-//         authService.doLogIn(account.username);
-//         setAccount({username:"",password:""});
-//         props.history.push("/home");
+  const handleLogin = () => {
+    const token = login(username, password);
+    console.log('token', token)
+    if (token){
+        localStorage.setItem('token', JSON.stringify(token));
+        setIsActiveLogin(false);
+    } else {
+        localStorage.removeItem('token');
+        setIsActiveLogin(true);
+    }
+  };
 
-//       }
-//   };
-
-//   return (
-//     <Grid container component="main">
-//       <CssBaseline />
-//       {/* <Grid item xs={false} sm={4} md={7} className={classes.image} /> */}
-//       <Grid
-//         item
-//         xs={12}
-//         sm={8}
-//         md={5}
-//         component={Paper}
-//         elevation={1}
-//         square
-//       >
-//         <div >
-//           <Avatar>
-//           </Avatar>
-//           <Typography component="h1" variant="h5">
-//             Sign in
-//           </Typography>
-//           <form  noValidate>
-//             <TextField
-//             onChange={(event)=>handelAccount("username",event)}
-//               variant="outlined"
-//               margin="normal"
-//               required
-//               fullWidth
-//               id="username"
-//               label="Username"
-//               name="username"
-//               autoFocus
-//             />
-//             <TextField
-//             onChange={(event)=>handelAccount("password",event)}
-//               variant="outlined"
-//               margin="normal"
-//               required
-//               fullWidth
-//               name="password"
-//               label="Password"
-//               type="password"
-//               id="password"
-//               autoComplete="current-password"
-//             />
-//             <FormControlLabel
-//               control={<Checkbox value="remember" color="primary" />}
-//               label="Remember me"
-//             />
-//             <Button
-//               type="submit"
-//               fullWidth
-//               variant="contained"
-//               color="primary"
-//               onClick = {handelLogin}
-//             >
-//               Sign In
-//             </Button>
-//             <Grid container>
-//               <Grid item>
-//                 <Link href="#" variant="body2">
-//                   {"Don't have an account? Sign Up"}
-//                 </Link>
-//               </Grid>
-//             </Grid>
-//             <Box mt={5}>
-//               <Copyright />
-//             </Box>
-//           </form>
-//         </div>
-//       </Grid>
-//     </Grid>
-//   );
-// }
+  return (
+    <Grid container component="main"
+    style={
+        isActiveLogIn ? { display: "block" } : { display: "none" }
+    }
+    >
+      <CssBaseline />
+      {/* <Grid item xs={false} sm={4} md={7} className={classes.image} /> */}
+      <Grid
+        item
+        xs={12}
+        sm={8}
+        md={5}
+        component={Paper}
+        elevation={1}
+        square
+      >
+        <div >
+          <Avatar>
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Sign in
+          </Typography>
+            <TextField
+            onChange={(event)=> setUsername(event.target.value)}
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="username"
+              label="Username"
+              name="username"
+              autoFocus
+            />
+            <TextField
+            onChange={(event)=> setPassword(event.target.value)}
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+            />
+            <FormControlLabel
+              control={<Checkbox value="remember" color="primary" />}
+              label="Remember me"
+            />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              onClick = {handleLogin}
+            >
+              Sign In
+            </Button>
+            <Grid container>
+              <Grid item>
+                <Link href="#" variant="body2">
+                  {"Don't have an account? Sign Up"}
+                </Link>
+              </Grid>
+            </Grid>
+            <Box mt={5}>
+              <Copyright />
+            </Box>
+        </div>
+      </Grid>
+    </Grid>
+  );
+}
