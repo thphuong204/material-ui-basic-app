@@ -18,7 +18,6 @@ root.render(
         <Route path="home" element={<JobCardsList />} />
         <Route path="jobs" element={<JobCardsList />} />
       </Route>
-      {/* <Route path="signin" element={<LogInSide />} /> */}
     </Routes>
   </BrowserRouter>
 );
