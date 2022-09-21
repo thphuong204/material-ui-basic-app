@@ -6,7 +6,7 @@ import JobCardsList from './components/JobCardsList';
 // import Page2 from './pages/SignIn';
 // import Page3 from './pages/Page3';
 // import SignIn from './pages/SignIn';
-import LogInSide from './pages/LogInSide';
+// import LogInSide from './pages/LogInSide';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

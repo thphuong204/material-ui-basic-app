@@ -20,7 +20,8 @@ const fetchPageArrayData = (page) => {
 const JobCardsList = () => {
 
     const [searchParams, setSearchParams] = useSearchParams();
-    const handleNoUse = () => { setSearchParams(searchParams) };
+    let searchParams1 = searchParams;
+    setSearchParams(searchParams1);
     const page = searchParams.get("page") || 1;
     const pageArrayData = fetchPageArrayData(page);
 
