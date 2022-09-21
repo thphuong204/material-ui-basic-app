@@ -1,0 +1,9 @@
++ Loading page data:
+++ Page number context available? 
++++ Not available yet, should be available at JobCardsList 
+
++ Job details pop-up
++++ Define a context and use an initial hard-coded value
++++ Change the selected job id value at the SelectedJobContext
++++ 
++ Only logged in users can see job details
