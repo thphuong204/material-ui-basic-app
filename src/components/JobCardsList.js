@@ -17,7 +17,7 @@ const fetchPageArrayData = (page) => {
     console.log('currentPageSize', size)
     return data.slice((page - 1) * size, page * size);
 }
-
+// filter(item => item.title.contains(query) || item.description.contains(query))
 
 const JobCardsList = () => {
 
@@ -28,12 +28,10 @@ const JobCardsList = () => {
     const [selectedJobId, setSelectedJobId] = useState("_cx62grqgd");
 
     return (
-
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <>
             <SelectedJobContext.Provider value={selectedJobId}>
-                <DetailJobCard style={{ zIndex: '1' }} />
+                <DetailJobCard />
             </SelectedJobContext.Provider>
-
             <Grid
                 container
                 spacing={{ xs: 2, sm: 3, md: 5 }}
@@ -49,8 +47,7 @@ const JobCardsList = () => {
                     )
                 })}
             </Grid>
-
-        </div>
+        </>
     )
 }
 
@@ -60,7 +57,7 @@ export function JobCardMUI({ jobObject, skillsList, onLearnMoreClick }) {
 
     return (
         <Card sx={{
-            backgroundColor: "primary.main",
+            backgroundColor: "primary.light",
             width: { xs: "250px", md: "300px", lg: "300px" },
         }}
         >

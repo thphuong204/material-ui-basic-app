@@ -13,8 +13,8 @@ export const CartContext = createContext();
 const theme = createTheme({
   palette: {
     primary: {
-      main: grey[700],
-      light: grey[500],
+      main: grey[800],
+      light: grey[700],
       dark: grey[900],
     },
     secondary: {
@@ -41,6 +41,15 @@ const theme = createTheme({
         },
       },
     },
+    // DetailJobCard: {
+    //   styleOverrides: {
+    //     "&.detailedJobcard": {
+    //       position: "absolute",
+    //       top: "50%",
+    //       left: "50%",
+    //     }
+    //   }
+    // }
   },
 })
 
@@ -68,7 +77,7 @@ function App() {
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <GlobalStyles />
-          <div>
+          <div >
             <AppBarMUI />
             <div
               style={{ display: "flex", justifyContent: "center", }}
