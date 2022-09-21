@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -6,15 +6,13 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Chip, Divider, Stack, Grid } from '@mui/material';
 import { Box } from '@mui/system';
-import { CartContext } from '../App';
 import data from '../data.json';
 import { useSearchParams } from 'react-router-dom';
-import { DetailJobCard } from './DetailJobCard';
-import SelectedJobContext from '../contexts/SelectedJobContext';
+import SetSelectedJobContext from '../contexts/SetSelectedJobContext';
+import SetIsActiveDetailJobCard from '../contexts/SetIsActiveDetailJobCard';
 
 const fetchPageArrayData = (page) => {
     const size = 5;
-    console.log('currentPageSize', size)
     return data.slice((page - 1) * size, page * size);
 }
 // filter(item => item.title.contains(query) || item.description.contains(query))
@@ -25,13 +23,11 @@ const JobCardsList = () => {
     const page = searchParams.get("page") || 1;
     const pageArrayData = fetchPageArrayData(page);
 
-    const [selectedJobId, setSelectedJobId] = useState("_cx62grqgd");
+    const setSelectedJobId = useContext(SetSelectedJobContext);
+    const setIsActiveDetailJobCard = useContext(SetIsActiveDetailJobCard);
 
     return (
         <>
-            <SelectedJobContext.Provider value={selectedJobId}>
-                <DetailJobCard />
-            </SelectedJobContext.Provider>
             <Grid
                 container
                 spacing={{ xs: 2, sm: 3, md: 5 }}
@@ -42,7 +38,12 @@ const JobCardsList = () => {
                 {pageArrayData.map((jobObject) => {
                     return (
                         <Grid item key={jobObject.id}>
-                            <JobCardMUI jobObject={jobObject} skillsList={jobObject.skills.slice(0, 4)} onLearnMoreClick={(jobId) => setSelectedJobId(jobId)} />
+                            <JobCardMUI
+                                jobObject={jobObject}
+                                skillsList={jobObject.skills.slice(0, 4)}
+                                onLearnMoreClick={(jobId) => setSelectedJobId(jobId)}
+                                onToggleActive={() => setIsActiveDetailJobCard(true)}
+                            />
                         </Grid>
                     )
                 })}
@@ -52,12 +53,14 @@ const JobCardsList = () => {
 }
 
 
-export function JobCardMUI({ jobObject, skillsList, onLearnMoreClick }) {
+export function JobCardMUI({ jobObject, skillsList, onLearnMoreClick, onToggleActive }) {
     // const handleDetailJobCardClick = useContext(());
 
     return (
         <Card sx={{
             backgroundColor: "primary.light",
+            zIndex: "2",
+            position: "relative",
             width: { xs: "250px", md: "300px", lg: "300px" },
         }}
         >
@@ -138,7 +141,10 @@ export function JobCardMUI({ jobObject, skillsList, onLearnMoreClick }) {
             <CardActions sx={{ justifyContent: "center" }}>
                 <Button
                     id={jobObject.id}
-                    onClick={() => onLearnMoreClick(jobObject.id)}
+                    onClick={() => {
+                        onLearnMoreClick(jobObject.id)
+                        onToggleActive()
+                    }}
                     size="small"
                     sx={{
                         backgroundColor: "orange",
@@ -146,7 +152,6 @@ export function JobCardMUI({ jobObject, skillsList, onLearnMoreClick }) {
                         borderRadius: "5px",
                         color: "black",
                         marginBottom: "10px"
-
                     }}
                 >
                     Learn More

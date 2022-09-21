@@ -1,14 +1,14 @@
-
 import { createTheme, CssBaseline, GlobalStyles, ThemeProvider } from '@mui/material';
 import { grey, orange, red } from '@mui/material/colors';
-import React, { useState, createContext } from 'react';
+import React, { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import AppBarMUI from './components/AppBarMUI';
-import JobCardsList from './components/JobCardsList';
 import PaginationLink from './components/PaginationLink';
-import data from './data.json';
-
-export const CartContext = createContext();
+import SelectedJobContext from './contexts/SelectedJobContext';
+import SetSelectedJobContext from './contexts/SetSelectedJobContext';
+import IsActiveDetailJobCard from './contexts/IsActiveDetailJobCard';
+import SetIsActiveDetailJobCard from './contexts/SetIsActiveDetailJobCard';
+import DetailJobCard from './components/DetailJobCard';
 
 const theme = createTheme({
   palette: {
@@ -53,45 +53,42 @@ const theme = createTheme({
   },
 })
 
-
 function App() {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [pageArrayData, setPageArrayData] = useState(data.slice(0, 5));
-
-  console.log(pageArrayData);
-
-  const [result, setResult] = useState("");
-  const handleDetailJobCardClick = (e) => {
-    console.log("e", e)
-    setResult(data.filter((jobObject) => (e.target.id === jobObject.id)))
-    console.log("result", result);
-  }
-
-  console.log("length", data.length);
+  const [selectedJobId, setSelectedJobId] = useState("_cx62grqgd");
+  const [isActiveDetailJobCard, setIsActiveDetailJobCard] = useState(false);
 
   return (
-    <CartContext.Provider value={pageArrayData}>
-      {/* <CartContext.Provider value={result}> */}
-      {/* <CartContext.Provider value={handleDetailJobCardClick}> */}
-      <div>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <GlobalStyles />
-          <div >
-            <AppBarMUI />
-            <div
-              style={{ display: "flex", justifyContent: "center", }}
-            >
-              <Outlet />
-            </div>
-            <PaginationLink />
-          </div >
-          {result}
-        </ThemeProvider>
-      </div>
-      {/* </CartContext.Provider> */}
-      {/* </CartContext.Provider> */}
-    </CartContext.Provider>
+    <div>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <GlobalStyles />
+        <div
+          style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", alignItems: "center" }}
+
+          onClickCapture={() => {
+            console.log("div clicking", isActiveDetailJobCard)
+            setIsActiveDetailJobCard(false)
+          }}
+        >
+          <SelectedJobContext.Provider value={selectedJobId}>
+            <SetSelectedJobContext.Provider value={setSelectedJobId}>
+              <IsActiveDetailJobCard.Provider value={isActiveDetailJobCard}>
+                <SetIsActiveDetailJobCard.Provider value={setIsActiveDetailJobCard}>
+                  <DetailJobCard />
+                  <AppBarMUI />
+                  <div
+                    style={{ display: "flex", justifyContent: "center", width: "100%" }}
+                  >
+                    <Outlet />
+                  </div>
+                  <PaginationLink />
+                </SetIsActiveDetailJobCard.Provider>
+              </IsActiveDetailJobCard.Provider>
+            </SetSelectedJobContext.Provider>
+          </SelectedJobContext.Provider>
+        </div >
+      </ThemeProvider>
+    </div>
   );
 }
 

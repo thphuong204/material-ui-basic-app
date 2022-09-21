@@ -1,25 +1,33 @@
-import { Box, Card, CardContent, Chip, Divider, Stack, Typography } from '@mui/material';
-import React, { useContext, useState } from 'react';
+import { Box, Chip, Divider, Stack, Typography } from '@mui/material';
+import React, { useContext } from 'react';
 import SelectedJobContext from '../contexts/SelectedJobContext';
+import IsActiveDetailJobCard from '../contexts/IsActiveDetailJobCard';
 import data from '../data.json';
+import SetIsActiveDetailJobCard from '../contexts/SetIsActiveDetailJobCard';
 
-export function DetailJobCard() {
-
-
+const DetailJobCard = () => {
+    const setIsActiveDetailJobCard = useContext(SetIsActiveDetailJobCard);
+    const isActiveDetailJobCard = useContext(IsActiveDetailJobCard);
+    console.log("isActiveDetailJobCard at beginning", isActiveDetailJobCard);
     const selectedJobId = useContext(SelectedJobContext);
-    console.log('selectedJobId', selectedJobId)
     const selectedJob = data.find(item => item.id === selectedJobId);
     console.log('selectedJob', selectedJob);
 
     return (
         <Box
-            className="detailedJobcard"
+            style={
+                isActiveDetailJobCard ? { display: "block" } : { display: "none" }
+            }
+            onBlur={() => setIsActiveDetailJobCard(false)}
             sx={{
                 backgroundColor: "primary.main",
-                width: { xs: "250px", md: "400px", lg: "400px" },
-                zIndex: '10',
-                position: "absolute",
-                // top: "50%", left: "50%",
+                width: "50%",
+                minWidth: "400px",
+                zIndex: "10",
+                position: "fixed",
+                top: "20%",
+                height: "300px",
+
             }}
         >
             <Typography
@@ -95,6 +103,8 @@ export function DetailJobCard() {
                 {selectedJob.description}
             </Typography>
 
-        </Box>
+        </Box >
     );
 }
+
+export default DetailJobCard;
