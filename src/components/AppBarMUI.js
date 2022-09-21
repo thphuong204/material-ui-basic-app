@@ -8,7 +8,6 @@ import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import LoginIcon from '@mui/icons-material/Login';
-import { Navigate } from "react-router-dom";
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -56,53 +55,53 @@ export default function AppBarMUI() {
 
 
     return (
-        <Box sx={{ flexGrow: 1 }} >
-            <AppBar position="relative" sx={{ mb: { xs: 3, sm: 3, md: 5 } }} >
-                <Toolbar sx={{ justifyContent: "center" }} >
-                    <Typography
-                        variant="h6"
-                        noWrap
-                        component="div"
-                        sx={{
-                            textAlign: "right",
-                            fontWeight: "bold",
-                            whiteSpace: "normal",
-                            wordBreak: "break-word",
-                            marginRight: "10px"
-                        }}
+        // <Box sx={{ width: "100%", zIndex: "1" }} >
+        <AppBar sx={{ width: "100%", mb: { xs: 3, sm: 3, md: 5 }, position: "relative" }} >
+            <Toolbar sx={{ justifyContent: "center" }} >
+                <Typography
+                    variant="h6"
+                    noWrap
+                    component="div"
+                    sx={{
+                        textAlign: "right",
+                        fontWeight: "bold",
+                        whiteSpace: "normal",
+                        wordBreak: "break-word",
+                        marginRight: "10px"
+                    }}
+                >
+                    Job Routing
+                </Typography>
+                <Search style={{ width: "150px" }}>
+                    <SearchIconWrapper>
+                        <SearchIcon />
+                    </SearchIconWrapper>
+                    <StyledInputBase
+                        placeholder="Search…"
+                        inputProps={{ 'aria-label': 'search' }}
+                    />
+                </Search>
+                <Box sx={{ flexGrow: 1 }} />
+                <Box sx={{ display: { md: 'flex' } }}>
+                    <IconButton
+                        size="large"
+                        edge="end"
+                        aria-label="show login"
+                        aria-haspopup="true"
+                        color="inherit"
+                        onClick={(e) => { console.log(e.target.value) }}
                     >
-                        Job Routing
-                    </Typography>
-                    <Search style={{ width: "150px" }}>
-                        <SearchIconWrapper>
-                            <SearchIcon />
-                        </SearchIconWrapper>
-                        <StyledInputBase
-                            placeholder="Search…"
-                            inputProps={{ 'aria-label': 'search' }}
-                        />
-                    </Search>
-                    <Box sx={{ flexGrow: 1 }} />
-                    <Box sx={{ display: { md: 'flex' } }}>
-                        <IconButton
-                            size="large"
-                            edge="end"
-                            aria-label="show login"
-                            aria-haspopup="true"
+                        <LoginIcon sx={{ mx: 1 }} />
+                        <Typography
                             color="inherit"
-                            onClick={(e) => { console.log(e.target.value) }}
+                            sx={{ fontWeight: "bold" }}
                         >
-                            <LoginIcon sx={{ mx: 1 }} />
-                            <Typography
-                                color="inherit"
-                                sx={{ fontWeight: "bold" }}
-                            >
-                                Sign in
-                            </Typography>
-                        </IconButton>
-                    </Box>
-                </Toolbar>
-            </AppBar>
-        </Box>
+                            Sign in
+                        </Typography>
+                    </IconButton>
+                </Box>
+            </Toolbar>
+        </AppBar>
+        // </Box>
     );
 }
