@@ -55,7 +55,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function AppBarMUI() {
     const [loggedIn, setLoggedIn] = useState(false);
     useEffect(() => {
-        console.log(setLoggedIn)
         setLoggedIn(isLoggedIn());
     }, [])
 
