@@ -9,9 +9,9 @@ import { Box } from '@mui/system';
 import data from '../apis/mock-data/jobListing.json';
 import { useSearchParams } from 'react-router-dom';
 import SetSelectedJobContext from '../contexts/SetSelectedJobContext';
-import SetIsActiveDetailJobCard from '../contexts/SetIsActiveDetailJobCard';
 import { isLoggedIn } from '../apis/auth';
 import IsActiveLogIn from '../contexts/IsActiveLogIn';
+import IsActiveDetailJobCard from '../contexts/IsActiveDetailJobCard';
 
 const fetchPageArrayData = (page) => {
     const size = 5;
@@ -20,15 +20,13 @@ const fetchPageArrayData = (page) => {
 // filter(item => item.title.contains(query) || item.description.contains(query))
 
 const JobCardsList = ({ }) => {
-
     const [searchParams] = useSearchParams();
 
     const page = searchParams.get("page") || 1;
     const pageArrayData = fetchPageArrayData(page);
 
     const setSelectedJobId = useContext(SetSelectedJobContext);
-    const setIsActiveDetailJobCard = useContext(SetIsActiveDetailJobCard);
-
+    const {setIsActiveDetailJobCard} = useContext(IsActiveDetailJobCard);
     const { isActiveLogIn, setIsActiveLogIn } = useContext(IsActiveLogIn);
 
     const onLearnMoreClick = (setSelectedJobId) => {
@@ -69,7 +67,6 @@ const JobCardsList = ({ }) => {
 
 
 export function JobCardMUI({ jobObject, skillsList, onLearnMoreClick, onToggleActive }) {
-    // const handleDetailJobCardClick = useContext(());
 
     return (
         <Card sx={{

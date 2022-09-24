@@ -75,8 +75,7 @@ function App() {
         >
           <SelectedJobContext.Provider value={selectedJobId}>
             <SetSelectedJobContext.Provider value={setSelectedJobId}>
-              <IsActiveDetailJobCard.Provider value={isActiveDetailJobCard}>
-                <SetIsActiveDetailJobCard.Provider value={setIsActiveDetailJobCard}>
+              <IsActiveDetailJobCard.Provider value={{isActiveDetailJobCard,setIsActiveDetailJobCard}}>
                   <IsActiveLogIn.Provider value={{ isActiveLogIn, setIsActiveLogIn }}>
                     <DetailJobCard />
                     <LogInSide />
@@ -88,7 +87,6 @@ function App() {
                     </div>
                     <PaginationLink />
                   </IsActiveLogIn.Provider>
-                </SetIsActiveDetailJobCard.Provider>
               </IsActiveDetailJobCard.Provider>
             </SetSelectedJobContext.Provider>
           </SelectedJobContext.Provider>

@@ -3,12 +3,9 @@ import React, { useContext } from 'react';
 import SelectedJobContext from '../contexts/SelectedJobContext';
 import IsActiveDetailJobCard from '../contexts/IsActiveDetailJobCard';
 import data from '../apis/mock-data/jobListing.json';
-import SetIsActiveDetailJobCard from '../contexts/SetIsActiveDetailJobCard';
 
 const DetailJobCard = () => {
-    const setIsActiveDetailJobCard = useContext(SetIsActiveDetailJobCard);
-    const isActiveDetailJobCard = useContext(IsActiveDetailJobCard);
-    console.log("isActiveDetailJobCard at beginning", isActiveDetailJobCard);
+    const {isActiveDetailJobCard,setIsActiveDetailJobCard} = useContext(IsActiveDetailJobCard);
     const selectedJobId = useContext(SelectedJobContext);
     const selectedJob = data.find(item => item.id === selectedJobId);
     console.log('selectedJob', selectedJob);
