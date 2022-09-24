@@ -23,6 +23,7 @@ const DetailJobCard = () => {
                 position: "fixed",
                 top: "20%",
                 height: "300px",
+                paddingX: "20px"
 
             }}
         >
@@ -44,13 +45,34 @@ const DetailJobCard = () => {
                 {selectedJob.title}
             </Typography>
             <Divider variant="middle" color="white" sx={{ my: 1 }} />
+            <Typography
+                sx={{
+                    color: "white",
+                    fontSize: "16px",
+                    my: 1,
+                    textAlign: "center",
+                    height: "72px",
+                    overflow: "auto",
+                }}
+            >
+                {selectedJob.description}
+            </Typography>
+            <Typography
+                sx={{
+                    color: "white",
+                    fontSize: "16px",
+                    textAlign: "center",
+                }}
+            >
+                Skills:
+            </Typography>
             <Stack
                 direction="row"
                 spacing={1}
                 columns={{ xs: 6, md: 4 }}
                 sx={{
                     flexWrap: "wrap",
-                    my: 1,
+                    mb: 1,
                     height: "48px",
                     alignItems: "center",
                     justifyContent: "center",
@@ -83,20 +105,17 @@ const DetailJobCard = () => {
                         />
                     )
                 })}
-
-
             </Stack>
             <Typography
                 sx={{
                     color: "white",
-                    fontSize: "12px",
+                    fontSize: "16px",
                     my: 1,
-                    textAlign: "justify",
-                    height: "72px",
+                    textAlign: "center",
                     overflow: "auto",
                 }}
             >
-                {selectedJob.description}
+                {`City: ${selectedJob.city}`}
             </Typography>
 
         </Box >
