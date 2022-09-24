@@ -2,7 +2,7 @@ import { Box, Chip, Divider, Stack, Typography } from '@mui/material';
 import React, { useContext } from 'react';
 import SelectedJobContext from '../contexts/SelectedJobContext';
 import IsActiveDetailJobCard from '../contexts/IsActiveDetailJobCard';
-import data from '../data.json';
+import data from '../apis/mock-data/jobListing.json';
 import SetIsActiveDetailJobCard from '../contexts/SetIsActiveDetailJobCard';
 
 const DetailJobCard = () => {

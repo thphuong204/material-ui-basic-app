@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Chip, Divider, Stack, Grid } from '@mui/material';
 import { Box } from '@mui/system';
-import data from '../data.json';
+import data from '../apis/mock-data/jobListing.json';
 import { useSearchParams } from 'react-router-dom';
 import SetSelectedJobContext from '../contexts/SetSelectedJobContext';
 import SetIsActiveDetailJobCard from '../contexts/SetIsActiveDetailJobCard';
