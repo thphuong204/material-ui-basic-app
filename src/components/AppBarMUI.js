@@ -9,7 +9,7 @@ import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import LoginIcon from '@mui/icons-material/Login';
 import LogInSide from '../pages/LogInSide';
-import SetIsActiveLogIn from '../contexts/SetIsActiveLogIn';
+import IsActiveLogIn from '../contexts/IsActiveLogIn';
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -55,7 +55,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export default function AppBarMUI() {
 
-    const setIsActiveLogIn = useContext(SetIsActiveLogIn);
+    const { setIsActiveLogIn } = useContext(IsActiveLogIn);
     return (
         // <Box sx={{ width: "100%", zIndex: "1" }} >
         <AppBar sx={{ width: "100%", mb: { xs: 3, sm: 3, md: 5 }, position: "relative" }} >

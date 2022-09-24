@@ -78,18 +78,16 @@ function App() {
             <SetSelectedJobContext.Provider value={setSelectedJobId}>
               <IsActiveDetailJobCard.Provider value={isActiveDetailJobCard}>
                 <SetIsActiveDetailJobCard.Provider value={setIsActiveDetailJobCard}>
-                  <IsActiveLogIn.Provider value={isActiveLogIn}>
-                    <SetIsActiveLogIn.Provider value={setIsActiveLogIn}>
-                      <DetailJobCard />
-                      <LogInSide setIsActiveLogin={setIsActiveLogIn} />
-                      <AppBarMUI />
-                      <div
-                        style={{ display: "flex", justifyContent: "center", width: "100%" }}
-                      >
-                        <Outlet />
-                      </div>
-                      <PaginationLink />
-                    </SetIsActiveLogIn.Provider>
+                  <IsActiveLogIn.Provider value={{ isActiveLogIn, setIsActiveLogIn }}>
+                    <DetailJobCard />
+                    <LogInSide />
+                    <AppBarMUI />
+                    <div
+                      style={{ display: "flex", justifyContent: "center", width: "100%" }}
+                    >
+                      <Outlet />
+                    </div>
+                    <PaginationLink />
                   </IsActiveLogIn.Provider>
                 </SetIsActiveDetailJobCard.Provider>
               </IsActiveDetailJobCard.Provider>

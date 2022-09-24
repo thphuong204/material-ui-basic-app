@@ -3,7 +3,6 @@ import React, { useContext, useState } from "react";
 // import image from "./Images/image.jpg";
 import {Avatar,Button,CssBaseline,TextField,FormControlLabel, Checkbox,Link,Paper,Box,Typography,Grid } from "@mui/material";
 import authService from "./../service/authService";
-import SetIsActiveLogIn from "../contexts/SetIsActiveLogIn";
 import IsActiveLogIn from "../contexts/IsActiveLogIn";
 import { login } from "../apis/auth";
 
@@ -21,7 +20,7 @@ function Copyright() {
 }
 
 
-export default function LogInSide({history, setIsActiveLogin}) {
+export default function LogInSide({history}) {
 
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
@@ -32,7 +31,7 @@ export default function LogInSide({history, setIsActiveLogin}) {
 
   }
 
-  const isActiveLogIn = useContext(IsActiveLogIn);
+  const {isActiveLogIn, setIsActiveLogIn} = useContext(IsActiveLogIn);
 
 
   const handleLogin = () => {
@@ -40,10 +39,10 @@ export default function LogInSide({history, setIsActiveLogin}) {
     console.log('token', token)
     if (token){
         localStorage.setItem('token', JSON.stringify(token));
-        setIsActiveLogin(false);
+        setIsActiveLogIn(false);
     } else {
         localStorage.removeItem('token');
-        setIsActiveLogin(true);
+        setIsActiveLogIn(true);
     }
   };
 
