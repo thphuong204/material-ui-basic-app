@@ -1,22 +1,7 @@
 import React, { useContext, useState } from "react";
-// import users from "./../../data/users";
-// import image from "./Images/image.jpg";
-import { Avatar, Button, CssBaseline, TextField, FormControlLabel, Checkbox, Link, Paper, Box, Typography, Grid } from "@mui/material";
+import { Avatar, Button, CssBaseline, TextField, FormControlLabel, Checkbox, Link, Paper, Typography, Grid } from "@mui/material";
 import IsActiveLogIn from "../contexts/IsActiveLogIn";
 import { login } from "../apis/auth";
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
 
 
 export default function LogInSide({ history }) {
@@ -48,6 +33,8 @@ export default function LogInSide({ history }) {
         zIndex: "10",
         position: "fixed",
         top: "20%",
+        width: "70%",
+        minWidth: "200px",
       }}
     >
       <CssBaseline />
@@ -62,9 +49,8 @@ export default function LogInSide({ history }) {
         square
         sx={{
           backgroundColor: "primary.main",
-          width: "50%",
-          minWidth: "400px",
-          paddingX: "10px",
+          paddingX: "20px",
+        borderRadius:"10px"
         }}
       >
         <div style={{
@@ -75,14 +61,14 @@ export default function LogInSide({ history }) {
         }}>
 
           <Avatar sx={{
-            marginY: "10px",
+            marginTop: "10px",
           }} />
           <Typography
             component="h1"
-            variant="h5"
             width="100%"
             textAlign="center"
             color="#ffffff"
+            fontSize="18px"
             fontWeight="bold">
             Log in
           </Typography>
@@ -108,17 +94,23 @@ export default function LogInSide({ history }) {
             type="password"
             id="password"
             autoComplete="current-password"
+            sx={{
+              "& MuiOutlinedInput": {
+                backgroundColor: "#fff",
+              }
+            }}
           />
           <FormControlLabel
             control={<Checkbox value="remember" style={{ color: "#fff" }} />}
-            style={{ color: "#fff" }}
+            style={{ color: "#fff", height: "30px", border: "none" }}
             label="Remember me"
           />
           <Button
             style={{
               fontWeight: "bold",
-              fontSize: "18px",
+              fontSize: "16px",
             }}
+            sx={{ paddingY: "3px" }}
             type="submit"
             fullWidth
             variant="contained"
@@ -129,7 +121,7 @@ export default function LogInSide({ history }) {
           </Button>
           <Grid container>
             <Grid item marginY="10px">
-              <Link href="#" fontSize="16px" color="#fff" >
+              <Link href="#" fontSize="14px" color="#fff" >
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>

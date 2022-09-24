@@ -42,25 +42,43 @@ const theme = createTheme({
         },
       },
     },
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+          marginBottom: "10px",
+          paddingTop: "0px",
+          height: "40px",
+        }
+      }
+    },
+
     MuiInputLabel: {
       styleOverrides: {
-        // Name of the slot
         root: {
-          // Some CSS
-          fontSize: "18px",
-          fontWeight:"bold",
-          marginBottom:"20px",
-          color:"#fff"
+          fontSize: "20px",
+          fontWeight: "bold",
+          zIndex: "12"
         },
       }
     },
     MuiOutlinedInput: {
       styleOverrides: {
-        // Name of the slot
-        root: {
-          // Some CSS
-          marginTop:'20px',
+        notchedOutline: {
+          border: "none"
         },
+        input: {
+          // marginTop: "10px",
+          paddingY: "0",
+          height: "20px",
+          zIndex: "11"
+        }
+      }
+    },
+    MuiInputBase: {
+      styleOverrides: {
+        root: {
+          height: "30px",
+        }
       }
     }
   },
