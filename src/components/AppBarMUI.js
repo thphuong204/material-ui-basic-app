@@ -8,6 +8,7 @@ import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import LoginIcon from '@mui/icons-material/Login';
+import LogoutIcon from '@mui/icons-material/Logout';
 import IsShowingLogInModal from '../contexts/IsShowingLogInModal';
 import { isLoggedIn, logOut, getCurrentUserName } from '../apis/auth';
 
@@ -56,7 +57,7 @@ export default function AppBarMUI() {
     const [loggedIn, setLoggedIn] = useState(false);
     useEffect(() => {
         setLoggedIn(isLoggedIn());
-    }, [])
+    }, [loggedIn])
 
     const { isShowingLogInModal, setIsShowingLogInModal } = useContext(IsShowingLogInModal);
 
@@ -66,25 +67,55 @@ export default function AppBarMUI() {
         if (loggedIn) {
             return (
                 <div>
-                    <span>
-                        {getCurrentUserName()}
-                    </span>
-                    <button onClick={
-                        () => {
-                            logOut()
-                            setLoggedIn(false);
+                    <IconButton
+                        size="large"
+                        edge="end"
+                        aria-label="show login"
+                        aria-haspopup="true"
+                        color="inherit"
+                        onClick={
+                            () => {
+                                logOut()
+                                setLoggedIn(false);
+                            }
                         }
-                    }>
-                        Sign out
-                    </button>
+                    >
+                        <Typography color="inherit"
+                            sx={{ fontWeight: "bold" }}>
+                            {getCurrentUserName()}
+                        </Typography>
+                        <LogoutIcon sx={{ mx: 1 }} />
+                        <Typography
+                            color="inherit"
+                            sx={{ fontWeight: "bold" }}
+                        >
+                            Sign out
+                        </Typography>
+                    </IconButton>
+
 
                 </div>
             )
         }
 
         return (
-            <div onClick={(e) => setIsShowingLogInModal(true)}>
-                Sign In
+            <div >
+                <IconButton
+                    size="large"
+                    edge="end"
+                    aria-label="show login"
+                    aria-haspopup="true"
+                    color="inherit"
+                    onClick={(e) => setIsShowingLogInModal(true)}
+                >
+                    <LoginIcon sx={{ mx: 1 }} />
+                    <Typography
+                        color="inherit"
+                        sx={{ fontWeight: "bold" }}
+                    >
+                        Sign in
+                    </Typography>
+                </IconButton>
             </div>
         )
     }
@@ -118,16 +149,6 @@ export default function AppBarMUI() {
                 </Search>
                 <Box sx={{ flexGrow: 1 }} />
                 <Box sx={{ display: { md: 'flex' } }}>
-                    <IconButton
-                        size="large"
-                        edge="end"
-                        aria-label="show login"
-                        aria-haspopup="true"
-                        color="inherit"
-                        onClick={(e) => setIsShowingLogInModal(true)}
-                    >
-                        <LoginIcon sx={{ mx: 1 }} />
-                    </IconButton>
                     {userActions()}
                 </Box>
             </Toolbar>
