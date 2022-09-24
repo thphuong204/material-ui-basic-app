@@ -11,7 +11,7 @@ import { useSearchParams } from 'react-router-dom';
 import SetSelectedJobContext from '../contexts/SetSelectedJobContext';
 import SetIsActiveDetailJobCard from '../contexts/SetIsActiveDetailJobCard';
 import { isLoggedIn } from '../apis/auth';
-import SetIsActiveLogIn from '../contexts/SetIsActiveLogIn';
+import IsActiveLogIn from '../contexts/IsActiveLogIn';
 
 const fetchPageArrayData = (page) => {
     const size = 5;
@@ -21,21 +21,25 @@ const fetchPageArrayData = (page) => {
 
 const JobCardsList = ({ }) => {
 
-    const [searchParams, setSearchParams] = useSearchParams();
-    let searchParams1 = searchParams;
-    setSearchParams(searchParams1);
+    const [searchParams] = useSearchParams();
+
     const page = searchParams.get("page") || 1;
     const pageArrayData = fetchPageArrayData(page);
 
     const setSelectedJobId = useContext(SetSelectedJobContext);
     const setIsActiveDetailJobCard = useContext(SetIsActiveDetailJobCard);
 
+    const { isActiveLogIn, setIsActiveLogIn } = useContext(IsActiveLogIn);
+
     const onLearnMoreClick = (setSelectedJobId) => {
         if (!isLoggedIn()) {
-
+            setIsActiveLogIn(true); //isShowingLoginPopup
+            setIsActiveDetailJobCard(false)
+            return (jobId) => setSelectedJobId(null);
+        } else {
+            setIsActiveDetailJobCard(true)
+            return (jobId) => setSelectedJobId(jobId);
         }
-
-        return (jobId) => setSelectedJobId(jobId);
     }
 
     return (
@@ -54,7 +58,6 @@ const JobCardsList = ({ }) => {
                                 jobObject={jobObject}
                                 skillsList={jobObject.skills.slice(0, 4)}
                                 onLearnMoreClick={() => onLearnMoreClick(setSelectedJobId)}
-                                onToggleActive={() => setIsActiveDetailJobCard(true)}
                             />
                         </Grid>
                     )
@@ -155,7 +158,6 @@ export function JobCardMUI({ jobObject, skillsList, onLearnMoreClick, onToggleAc
                     id={jobObject.id}
                     onClick={() => {
                         onLearnMoreClick(jobObject.id)
-                        onToggleActive()
                     }}
                     size="small"
                     sx={{

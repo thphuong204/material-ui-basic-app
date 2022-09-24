@@ -9,7 +9,6 @@ import SetSelectedJobContext from './contexts/SetSelectedJobContext';
 import IsActiveDetailJobCard from './contexts/IsActiveDetailJobCard';
 import SetIsActiveDetailJobCard from './contexts/SetIsActiveDetailJobCard';
 import IsActiveLogIn from './contexts/IsActiveLogIn';
-import SetIsActiveLogIn from './contexts/SetIsActiveLogIn';
 import DetailJobCard from './components/DetailJobCard';
 import LogInSide from './pages/LogInSide';
 
