@@ -8,9 +8,7 @@ import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import LoginIcon from '@mui/icons-material/Login';
-import LogInSide from '../pages/LogInSide';
 import IsActiveLogIn from '../contexts/IsActiveLogIn';
-
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',

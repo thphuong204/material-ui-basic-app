@@ -10,7 +10,7 @@ import IsActiveDetailJobCard from './contexts/IsActiveDetailJobCard';
 import SetIsActiveDetailJobCard from './contexts/SetIsActiveDetailJobCard';
 import IsActiveLogIn from './contexts/IsActiveLogIn';
 import DetailJobCard from './components/DetailJobCard';
-import LogInSide from './pages/LogInSide';
+import LogInSide from './components/LogInSide';
 
 const theme = createTheme({
   palette: {
