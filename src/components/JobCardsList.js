@@ -8,24 +8,22 @@ import { Chip, Divider, Stack, Grid } from '@mui/material';
 import { Box } from '@mui/system';
 import data from '../apis/mock-data/jobListing.json';
 import { useSearchParams } from 'react-router-dom';
-import SetSelectedJobContext from '../contexts/SetSelectedJobContext';
 import { isLoggedIn } from '../apis/auth';
 import IsActiveLogIn from '../contexts/IsActiveLogIn';
 import IsActiveDetailJobCard from '../contexts/IsActiveDetailJobCard';
+import SelectedJobContext from '../contexts/SelectedJobContext';
 
 const fetchPageArrayData = (page) => {
     const size = 5;
     return data.slice((page - 1) * size, page * size);
 }
-// filter(item => item.title.contains(query) || item.description.contains(query))
 
-const JobCardsList = ({ }) => {
+const JobCardsList = () => {
     const [searchParams] = useSearchParams();
-
     const page = searchParams.get("page") || 1;
     const pageArrayData = fetchPageArrayData(page);
 
-    const setSelectedJobId = useContext(SetSelectedJobContext);
+    const {setSelectedJobId} = useContext(SelectedJobContext);
     const {setIsActiveDetailJobCard} = useContext(IsActiveDetailJobCard);
     const { setIsActiveLogIn } = useContext(IsActiveLogIn);
 

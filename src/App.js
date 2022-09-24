@@ -5,7 +5,6 @@ import { Outlet } from 'react-router-dom';
 import AppBarMUI from './components/AppBarMUI';
 import PaginationLink from './components/PaginationLink';
 import SelectedJobContext from './contexts/SelectedJobContext';
-import SetSelectedJobContext from './contexts/SetSelectedJobContext';
 import IsActiveDetailJobCard from './contexts/IsActiveDetailJobCard';
 import IsActiveLogIn from './contexts/IsActiveLogIn';
 import DetailJobCard from './components/DetailJobCard';
@@ -102,8 +101,7 @@ function App() {
             setIsActiveDetailJobCard(false)
           }}
         >
-          <SelectedJobContext.Provider value={selectedJobId}>
-            <SetSelectedJobContext.Provider value={setSelectedJobId}>
+          <SelectedJobContext.Provider value={{selectedJobId,setSelectedJobId}}>
               <IsActiveDetailJobCard.Provider value={{ isActiveDetailJobCard, setIsActiveDetailJobCard }}>
                 <IsActiveLogIn.Provider value={{ isActiveLogIn, setIsActiveLogIn }}>
                   <DetailJobCard />
@@ -117,7 +115,6 @@ function App() {
                   <PaginationLink />
                 </IsActiveLogIn.Provider>
               </IsActiveDetailJobCard.Provider>
-            </SetSelectedJobContext.Provider>
           </SelectedJobContext.Provider>
         </div >
       </ThemeProvider>
