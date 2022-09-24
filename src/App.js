@@ -42,15 +42,27 @@ const theme = createTheme({
         },
       },
     },
-    // DetailJobCard: {
-    //   styleOverrides: {
-    //     "&.detailedJobcard": {
-    //       position: "absolute",
-    //       top: "50%",
-    //       left: "50%",
-    //     }
-    //   }
-    // }
+    MuiInputLabel: {
+      styleOverrides: {
+        // Name of the slot
+        root: {
+          // Some CSS
+          fontSize: "18px",
+          fontWeight:"bold",
+          marginBottom:"20px",
+          color:"#fff"
+        },
+      }
+    },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        // Name of the slot
+        root: {
+          // Some CSS
+          marginTop:'20px',
+        },
+      }
+    }
   },
 })
 
@@ -74,18 +86,18 @@ function App() {
         >
           <SelectedJobContext.Provider value={selectedJobId}>
             <SetSelectedJobContext.Provider value={setSelectedJobId}>
-              <IsActiveDetailJobCard.Provider value={{isActiveDetailJobCard,setIsActiveDetailJobCard}}>
-                  <IsActiveLogIn.Provider value={{ isActiveLogIn, setIsActiveLogIn }}>
-                    <DetailJobCard />
-                    <LogInSide />
-                    <AppBarMUI />
-                    <div
-                      style={{ display: "flex", justifyContent: "center", width: "100%" }}
-                    >
-                      <Outlet />
-                    </div>
-                    <PaginationLink />
-                  </IsActiveLogIn.Provider>
+              <IsActiveDetailJobCard.Provider value={{ isActiveDetailJobCard, setIsActiveDetailJobCard }}>
+                <IsActiveLogIn.Provider value={{ isActiveLogIn, setIsActiveLogIn }}>
+                  <DetailJobCard />
+                  <LogInSide />
+                  <AppBarMUI />
+                  <div
+                    style={{ display: "flex", justifyContent: "center", width: "100%" }}
+                  >
+                    <Outlet />
+                  </div>
+                  <PaginationLink />
+                </IsActiveLogIn.Provider>
               </IsActiveDetailJobCard.Provider>
             </SetSelectedJobContext.Provider>
           </SelectedJobContext.Provider>
