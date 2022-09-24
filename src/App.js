@@ -6,7 +6,7 @@ import AppBarMUI from './components/AppBarMUI';
 import PaginationLink from './components/PaginationLink';
 import SelectedJobContext from './contexts/SelectedJobContext';
 import IsActiveDetailJobCard from './contexts/IsActiveDetailJobCard';
-import IsActiveLogIn from './contexts/IsActiveLogIn';
+import IsShowingLogInModal from './contexts/IsShowingLogInModal';
 import DetailJobCard from './components/DetailJobCard';
 import LogInSide from './components/LogInSide';
 
@@ -86,7 +86,7 @@ const theme = createTheme({
 function App() {
   const [selectedJobId, setSelectedJobId] = useState("_cx62grqgd");
   const [isActiveDetailJobCard, setIsActiveDetailJobCard] = useState(false);
-  const [isActiveLogIn, setIsActiveLogIn] = useState(false);
+  const [isShowingLogInModal, setIsShowingLogInModal] = useState(false);
 
   return (
     <div>
@@ -103,7 +103,7 @@ function App() {
         >
           <SelectedJobContext.Provider value={{selectedJobId,setSelectedJobId}}>
               <IsActiveDetailJobCard.Provider value={{ isActiveDetailJobCard, setIsActiveDetailJobCard }}>
-                <IsActiveLogIn.Provider value={{ isActiveLogIn, setIsActiveLogIn }}>
+                <IsShowingLogInModal.Provider value={{ isShowingLogInModal, setIsShowingLogInModal }}>
                   <DetailJobCard />
                   <LogInSide />
                   <AppBarMUI />
@@ -113,7 +113,7 @@ function App() {
                     <Outlet />
                   </div>
                   <PaginationLink />
-                </IsActiveLogIn.Provider>
+                </IsShowingLogInModal.Provider>
               </IsActiveDetailJobCard.Provider>
           </SelectedJobContext.Provider>
         </div >

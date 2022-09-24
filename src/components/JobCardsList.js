@@ -9,7 +9,7 @@ import { Box } from '@mui/system';
 import data from '../apis/mock-data/jobListing.json';
 import { useSearchParams } from 'react-router-dom';
 import { isLoggedIn } from '../apis/auth';
-import IsActiveLogIn from '../contexts/IsActiveLogIn';
+import IsShowingLogInModal from '../contexts/IsShowingLogInModal';
 import IsActiveDetailJobCard from '../contexts/IsActiveDetailJobCard';
 import SelectedJobContext from '../contexts/SelectedJobContext';
 
@@ -25,11 +25,11 @@ const JobCardsList = () => {
 
     const {setSelectedJobId} = useContext(SelectedJobContext);
     const {setIsActiveDetailJobCard} = useContext(IsActiveDetailJobCard);
-    const { setIsActiveLogIn } = useContext(IsActiveLogIn);
+    const {setIsShowingLogInModal } = useContext(IsShowingLogInModal);
 
     const onLearnMoreClick = (setSelectedJobId) => {
         if (!isLoggedIn()) {
-            setIsActiveLogIn(true); //isShowingLoginPopup
+            setIsShowingLogInModal(true); //isShowingLoginPopup
             setIsActiveDetailJobCard(false)
             return (jobId) => setSelectedJobId(null);
         } else {

@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Avatar, Button, CssBaseline, TextField, FormControlLabel, Checkbox, Link, Paper, Typography, Grid } from "@mui/material";
-import IsActiveLogIn from "../contexts/IsActiveLogIn";
+import IsShowingLogInModal from "../contexts/IsShowingLogInModal";
 import { login } from "../apis/auth";
 
 
@@ -9,7 +9,7 @@ export default function LogInSide({ history }) {
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
 
-  const { isActiveLogIn, setIsActiveLogIn } = useContext(IsActiveLogIn);
+  const { isShowingLogInModal, setIsShowingLogInModal } = useContext(IsShowingLogInModal);
 
 
   const handleLogin = () => {
@@ -17,17 +17,17 @@ export default function LogInSide({ history }) {
     console.log('token', token)
     if (token) {
       localStorage.setItem('token', JSON.stringify(token));
-      setIsActiveLogIn(false);
+      setIsShowingLogInModal(false);
     } else {
       localStorage.removeItem('token');
-      setIsActiveLogIn(true);
+      setIsShowingLogInModal(true);
     }
   };
 
   return (
     <Grid container component="main"
       style={
-        isActiveLogIn ? { display: "flex", justifyContent: "center" } : { display: "none" }
+        isShowingLogInModal ? { display: "flex", justifyContent: "center" } : { display: "none" }
       }
       sx={{
         zIndex: "10",
@@ -50,7 +50,7 @@ export default function LogInSide({ history }) {
         sx={{
           backgroundColor: "primary.main",
           paddingX: "20px",
-        borderRadius:"10px"
+          borderRadius: "10px"
         }}
       >
         <div style={{

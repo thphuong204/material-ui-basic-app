@@ -8,7 +8,6 @@ const DetailJobCard = () => {
     const { isActiveDetailJobCard } = useContext(IsActiveDetailJobCard);
     const {selectedJobId} = useContext(SelectedJobContext);
     const selectedJob = data.find(item => item.id === selectedJobId);
-    console.log('selectedJob', selectedJob);
 
     return (
         <Box
