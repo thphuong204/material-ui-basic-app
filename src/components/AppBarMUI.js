@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -9,6 +9,7 @@ import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import LoginIcon from '@mui/icons-material/Login';
 import IsShowingLogInModal from '../contexts/IsShowingLogInModal';
+import { isLoggedIn, logOut, getCurrentUserName } from '../apis/auth';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -52,8 +53,43 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function AppBarMUI() {
+    const [loggedIn, setLoggedIn] = useState(false);
+    useEffect(() => {
+        console.log(setLoggedIn)
+        setLoggedIn(isLoggedIn());
+    }, [])
 
-    const { isShowingLogInModal,setIsShowingLogInModal } = useContext(IsShowingLogInModal);
+    const { isShowingLogInModal, setIsShowingLogInModal } = useContext(IsShowingLogInModal);
+
+
+    const userActions = () => {
+
+        if (loggedIn) {
+            return (
+                <div>
+                    <span>
+                        {getCurrentUserName()}
+                    </span>
+                    <button onClick={
+                        () => {
+                            logOut()
+                            setLoggedIn(false);
+                        }
+                    }>
+                        Sign out
+                    </button>
+
+                </div>
+            )
+        }
+
+        return (
+            <div onClick={(e) => setIsShowingLogInModal(true)}>
+                Sign In
+            </div>
+        )
+    }
+
     return (
         // <Box sx={{ width: "100%", zIndex: "1" }} >
         <AppBar sx={{ width: "100%", mb: { xs: 3, sm: 3, md: 5 }, position: "relative" }} >
@@ -92,13 +128,8 @@ export default function AppBarMUI() {
                         onClick={(e) => setIsShowingLogInModal(true)}
                     >
                         <LoginIcon sx={{ mx: 1 }} />
-                        <Typography
-                            color="inherit"
-                            sx={{ fontWeight: "bold" }}
-                        >
-                          {true? "Log out" : "Sign in"}  
-                        </Typography>
                     </IconButton>
+                    {userActions()}
                 </Box>
             </Toolbar>
         </AppBar>

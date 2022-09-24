@@ -37,6 +37,30 @@ export const isLoggedIn = () => {
 
 }
 
+export const getCurrentUserName = () => {
+
+    const tokenString = localStorage.getItem('token');
+
+    if (!tokenString) {
+        return null;
+    }
+
+    let token = null;
+    try {
+        token = JSON.parse(tokenString);
+    } catch (e) {
+        console.error('Error parsing token to JSON', e.message);
+        return null;
+    }
+
+    if (!token || !token.username) {
+        return null;
+    }
+
+    return token.username;
+
+}
+
 export const logOut = () => {
     localStorage.removeItem('token');
 }
