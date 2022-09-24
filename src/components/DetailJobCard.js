@@ -5,7 +5,7 @@ import IsActiveDetailJobCard from '../contexts/IsActiveDetailJobCard';
 import data from '../apis/mock-data/jobListing.json';
 
 const DetailJobCard = () => {
-    const {isActiveDetailJobCard,setIsActiveDetailJobCard} = useContext(IsActiveDetailJobCard);
+    const { isActiveDetailJobCard, setIsActiveDetailJobCard } = useContext(IsActiveDetailJobCard);
     const selectedJobId = useContext(SelectedJobContext);
     const selectedJob = data.find(item => item.id === selectedJobId);
     console.log('selectedJob', selectedJob);
@@ -15,7 +15,6 @@ const DetailJobCard = () => {
             style={
                 isActiveDetailJobCard ? { display: "block" } : { display: "none" }
             }
-            onBlur={() => setIsActiveDetailJobCard(false)}
             sx={{
                 backgroundColor: "primary.main",
                 width: "50%",

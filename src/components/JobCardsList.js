@@ -27,7 +27,7 @@ const JobCardsList = ({ }) => {
 
     const setSelectedJobId = useContext(SetSelectedJobContext);
     const {setIsActiveDetailJobCard} = useContext(IsActiveDetailJobCard);
-    const { isActiveLogIn, setIsActiveLogIn } = useContext(IsActiveLogIn);
+    const { setIsActiveLogIn } = useContext(IsActiveLogIn);
 
     const onLearnMoreClick = (setSelectedJobId) => {
         if (!isLoggedIn()) {
@@ -66,7 +66,7 @@ const JobCardsList = ({ }) => {
 }
 
 
-export function JobCardMUI({ jobObject, skillsList, onLearnMoreClick, onToggleActive }) {
+export function JobCardMUI({ jobObject, skillsList, onLearnMoreClick }) {
 
     return (
         <Card sx={{
