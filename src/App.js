@@ -7,7 +7,6 @@ import PaginationLink from './components/PaginationLink';
 import SelectedJobContext from './contexts/SelectedJobContext';
 import SetSelectedJobContext from './contexts/SetSelectedJobContext';
 import IsActiveDetailJobCard from './contexts/IsActiveDetailJobCard';
-import SetIsActiveDetailJobCard from './contexts/SetIsActiveDetailJobCard';
 import IsActiveLogIn from './contexts/IsActiveLogIn';
 import DetailJobCard from './components/DetailJobCard';
 import LogInSide from './components/LogInSide';
