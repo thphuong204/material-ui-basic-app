@@ -2,7 +2,6 @@ import React, { useContext, useState } from "react";
 // import users from "./../../data/users";
 // import image from "./Images/image.jpg";
 import {Avatar,Button,CssBaseline,TextField,FormControlLabel, Checkbox,Link,Paper,Box,Typography,Grid } from "@mui/material";
-import authService from "./../service/authService";
 import IsActiveLogIn from "../contexts/IsActiveLogIn";
 import { login } from "../apis/auth";
 
@@ -24,12 +23,6 @@ export default function LogInSide({history}) {
 
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
-
-  if(authService.isLoggedIn()){
-
-    history.push("./home");
-
-  }
 
   const {isActiveLogIn, setIsActiveLogIn} = useContext(IsActiveLogIn);
 
