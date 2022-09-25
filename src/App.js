@@ -97,11 +97,6 @@ function App() {
         <GlobalStyles />
         <div
           style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", alignItems: "center" }}
-
-          onClickCapture={() => {
-            console.log("div clicking", isActiveDetailJobCard)
-            setIsActiveDetailJobCard(false)
-          }}
         >
           <IsLoggedInContext.Provider value={{ loggedIn, setLoggedIn }}>
             <SelectedJobContext.Provider value={{ selectedJobId, setSelectedJobId }}>

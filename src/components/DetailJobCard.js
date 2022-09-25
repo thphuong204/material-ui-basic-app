@@ -5,13 +5,11 @@ import IsActiveDetailJobCard from '../contexts/IsActiveDetailJobCard';
 import data from '../apis/mock-data/jobListing.json';
 
 const DetailJobCard = () => {
-    const { isActiveDetailJobCard, setIsActiveDetaiJobCard } = useContext(IsActiveDetailJobCard);
+    const { isActiveDetailJobCard, setIsActiveDetailJobCard } = useContext(IsActiveDetailJobCard);
     const { selectedJobId } = useContext(SelectedJobContext);
     const selectedJob = data.find(item => item.id === selectedJobId);
 
-    const handleClose = () => {
-        setIsActiveDetaiJobCard(false);
-    };
+    const handleClose = () => {setIsActiveDetailJobCard(false)};
 
     const style = {
         position: 'absolute',
