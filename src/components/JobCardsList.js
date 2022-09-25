@@ -23,15 +23,14 @@ const JobCardsList = () => {
     const page = searchParams.get("page") || 1;
     const pageArrayData = fetchPageArrayData(page);
 
-    const {setSelectedJobId} = useContext(SelectedJobContext);
-    const {setIsActiveDetailJobCard} = useContext(IsActiveDetailJobCard);
-    const {setIsShowingLogInModal } = useContext(IsShowingLogInModal);
+    const { setSelectedJobId } = useContext(SelectedJobContext);
+    const { setIsActiveDetailJobCard } = useContext(IsActiveDetailJobCard);
+    const { setIsShowingLogInModal } = useContext(IsShowingLogInModal);
 
     const onLearnMoreClick = (jobId) => {
         if (!isLoggedIn()) {
             setIsShowingLogInModal(true); //isShowingLoginPopup
             setIsActiveDetailJobCard(false)
-            setSelectedJobId(null);
         } else {
             setIsActiveDetailJobCard(true)
             setSelectedJobId(jobId);
