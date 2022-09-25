@@ -27,14 +27,14 @@ const JobCardsList = () => {
     const {setIsActiveDetailJobCard} = useContext(IsActiveDetailJobCard);
     const {setIsShowingLogInModal } = useContext(IsShowingLogInModal);
 
-    const onLearnMoreClick = (setSelectedJobId) => {
+    const onLearnMoreClick = (jobId) => {
         if (!isLoggedIn()) {
             setIsShowingLogInModal(true); //isShowingLoginPopup
             setIsActiveDetailJobCard(false)
-            return (jobId) => setSelectedJobId(null);
+            setSelectedJobId(null);
         } else {
             setIsActiveDetailJobCard(true)
-            return (jobId) => setSelectedJobId(jobId);
+            setSelectedJobId(jobId);
         }
     }
 
@@ -53,7 +53,7 @@ const JobCardsList = () => {
                             <JobCardMUI
                                 jobObject={jobObject}
                                 skillsList={jobObject.skills.slice(0, 4)}
-                                onLearnMoreClick={() => onLearnMoreClick(setSelectedJobId)}
+                                onLearnMoreClick={onLearnMoreClick}
                             />
                         </Grid>
                     )
