@@ -11,6 +11,7 @@ import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
 import IsShowingLogInModal from '../contexts/IsShowingLogInModal';
 import { isLoggedIn, logOut, getCurrentUserName } from '../apis/auth';
+import IsLoggedInContext from '../contexts/IsLoggedInContext';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -54,7 +55,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function AppBarMUI() {
-    const [loggedIn, setLoggedIn] = useState(false);
+    const { loggedIn, setLoggedIn } = useContext(IsLoggedInContext);
+
     useEffect(() => {
         setLoggedIn(isLoggedIn());
     }, [loggedIn])
