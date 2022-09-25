@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Avatar, Button, CssBaseline, TextField, FormControlLabel, Checkbox, Link, Paper, Typography, Grid, Modal } from "@mui/material";
+import { Avatar, Button, CssBaseline, TextField, FormControlLabel, Checkbox, Link, Typography, Grid, Modal } from "@mui/material";
 import IsShowingLogInModal from "../contexts/IsShowingLogInModal";
 import { login } from "../apis/auth";
 import IsLoggedInContext from "../contexts/IsLoggedInContext";
@@ -22,7 +22,7 @@ export default function LogInSide({ history }) {
 
   const { isShowingLogInModal, setIsShowingLogInModal } = useContext(IsShowingLogInModal);
 
-  const { loggedIn, setLoggedIn } = useContext(IsLoggedInContext);
+  const { setLoggedIn } = useContext(IsLoggedInContext);
 
 
   const handleLogin = () => {

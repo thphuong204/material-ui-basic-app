@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -61,7 +61,7 @@ export default function AppBarMUI() {
         setLoggedIn(isLoggedIn());
     }, [loggedIn])
 
-    const { isShowingLogInModal, setIsShowingLogInModal } = useContext(IsShowingLogInModal);
+    const { setIsShowingLogInModal } = useContext(IsShowingLogInModal);
 
 
     const userActions = () => {
