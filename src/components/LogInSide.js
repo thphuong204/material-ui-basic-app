@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { Avatar, Button, CssBaseline, TextField, FormControlLabel, Checkbox, Link, Paper, Typography, Grid } from "@mui/material";
 import IsShowingLogInModal from "../contexts/IsShowingLogInModal";
 import { login } from "../apis/auth";
+import IsLoggedInContext from "../contexts/IsLoggedInContext";
 
 
 export default function LogInSide({ history }) {
@@ -11,6 +12,8 @@ export default function LogInSide({ history }) {
 
   const { isShowingLogInModal, setIsShowingLogInModal } = useContext(IsShowingLogInModal);
 
+  const { loggedIn, setLoggedIn } = useContext(IsLoggedInContext);
+
 
   const handleLogin = () => {
     const token = login(username, password);
@@ -18,9 +21,11 @@ export default function LogInSide({ history }) {
     if (token) {
       localStorage.setItem('token', JSON.stringify(token));
       setIsShowingLogInModal(false);
+      setLoggedIn(true);
     } else {
       localStorage.removeItem('token');
       setIsShowingLogInModal(true);
+      setLoggedIn(false);
     }
   };
 
