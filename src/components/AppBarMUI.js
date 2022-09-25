@@ -59,7 +59,7 @@ export default function AppBarMUI() {
 
     useEffect(() => {
         setLoggedIn(isLoggedIn());
-    }, [loggedIn])
+    }, [])
 
     const { setIsShowingLogInModal } = useContext(IsShowingLogInModal);
 
