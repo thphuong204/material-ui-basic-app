@@ -17,8 +17,8 @@ const style = {
 
 export default function LogInSide({ history }) {
 
-  const [username, setUsername] = useState();
-  const [password, setPassword] = useState();
+  const [username, setUsername] = useState("phuong");
+  const [password, setPassword] = useState("123456");
 
   const { isShowingLogInModal, setIsShowingLogInModal } = useContext(IsShowingLogInModal);
 
@@ -78,7 +78,7 @@ export default function LogInSide({ history }) {
           </Typography>
           <TextField
             onChange={(event) => setUsername(event.target.value)}
-            variant="standard"
+            variant="outlined"
             margin="normal"
             required
             fullWidth
@@ -87,11 +87,12 @@ export default function LogInSide({ history }) {
             name="username"
             color="primary"
             placeholder="phuong"
+            defaultValue={username}
             autoFocus
           />
           <TextField
             onChange={(event) => setPassword(event.target.value)}
-            variant="standard"
+            variant="outlined"
             margin="normal"
             required
             fullWidth
@@ -102,6 +103,7 @@ export default function LogInSide({ history }) {
             autoComplete="current-password"
             color="primary"
             placeholder="123456"
+            defaultValue={password}
           />
           <FormControlLabel
             control={<Checkbox value="remember" style={{ color: "#fff" }} />}
