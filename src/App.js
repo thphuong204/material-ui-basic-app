@@ -48,6 +48,8 @@ const theme = createTheme({
           marginBottom: "10px",
           paddingTop: "0px",
           height: "40px",
+          border: "1px solid white",
+          borderRadius: "5px",
         }
       }
     },
