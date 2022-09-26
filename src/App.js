@@ -45,10 +45,10 @@ const theme = createTheme({
     MuiTextField: {
       styleOverrides: {
         root: {
-          marginBottom: "10px",
+          // marginBottom: "10px",
           paddingTop: "0px",
-          height: "40px",
-          border: "1px solid white",
+          height: "50px",
+          border: "1px solid #ffa726",
           borderRadius: "5px",
         }
       }
@@ -57,9 +57,9 @@ const theme = createTheme({
     MuiInputLabel: {
       styleOverrides: {
         root: {
-          fontSize: "20px",
+          fontSize: "16px",
           fontWeight: "bold",
-          zIndex: "12"
+          marginTop:"15px",
         },
       }
     },
@@ -69,10 +69,9 @@ const theme = createTheme({
           border: "none"
         },
         input: {
-          // marginTop: "10px",
+          marginTop: "30px",
           paddingY: "0",
           height: "20px",
-          zIndex: "11"
         }
       }
     },
