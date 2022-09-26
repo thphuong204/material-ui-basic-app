@@ -88,7 +88,6 @@ export default function LogInSide({ history }) {
             color="primary"
             placeholder="phuong"
             defaultValue={username}
-            autoFocus
           />
           <TextField
             onChange={(event) => setPassword(event.target.value)}
