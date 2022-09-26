@@ -12,7 +12,7 @@ const style = {
   width: 400,
   boxShadow: 24,
   p: 4,
-  backgroundColor:"primary.main"
+  backgroundColor: "primary.main"
 };
 
 export default function LogInSide({ history }) {
@@ -51,87 +51,86 @@ export default function LogInSide({ history }) {
       aria-describedby="modal-modal-description"
     >
       <Grid container component="main"
-        
+
         sx={style}
       >
         <CssBaseline />
 
-      
-          <div style={{
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "center",
-            alignContent: "center",
-          }}>
 
-            <Avatar sx={{
-              marginTop: "10px",
-            }} />
-            <Typography
-              component="h1"
-              textAlign="center"
-              color="#ffffff"
-              fontSize="18px"
-              width="100%"
-              fontWeight="bold">
-              Log in
-            </Typography>
-            <TextField
-              onChange={(event) => setUsername(event.target.value)}
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="username"
-              label="Username"
-              name="username"
-              autoFocus
-            />
-            <TextField
-              onChange={(event) => setPassword(event.target.value)}
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-              sx={{
-                "& MuiOutlinedInput": {
-                  backgroundColor: "#fff",
-                }
-              }}
-            />
-            <FormControlLabel
-              control={<Checkbox value="remember" style={{ color: "#fff" }} />}
-              style={{ color: "#fff", height: "30px", border: "none" }}
-              label="Remember me"
-            />
-            <Button
-              style={{
-                fontWeight: "bold",
-                fontSize: "16px",
-              }}
-              sx={{ paddingY: "3px" }}
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="warning"
-              onClick={handleLogin}
-            >
-              Sign In
-            </Button>
-            <Grid container>
-              <Grid item marginY="10px">
-                <Link href="#" fontSize="14px" color="#fff" >
-                  {"Don't have an account? Sign Up"}
-                </Link>
-              </Grid>
+        <div style={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "center",
+          alignContent: "center",
+        }}>
+
+          <Avatar sx={{
+            marginTop: "10px",
+          }} />
+          <Typography
+            component="h1"
+            textAlign="center"
+            color="#ffffff"
+            fontSize="18px"
+            width="100%"
+            fontWeight="bold">
+            Log in
+          </Typography>
+          <TextField
+            onChange={(event) => setUsername(event.target.value)}
+            variant="standard"
+            margin="normal"
+            required
+            fullWidth
+            id="username"
+            label="Username"
+            name="username"
+            color="primary"
+            placeholder="phuong"
+            autoFocus
+          />
+          <TextField
+            onChange={(event) => setPassword(event.target.value)}
+            variant="standard"
+            margin="normal"
+            required
+            fullWidth
+            name="password"
+            label="Password"
+            type="password"
+            id="password"
+            autoComplete="current-password"
+            color="primary"
+            placeholder="123456"
+          />
+          <FormControlLabel
+            control={<Checkbox value="remember" style={{ color: "#fff" }} />}
+            style={{ color: "#fff", height: "30px", border: "none" }}
+            label="Remember me"
+          />
+          <Button
+            style={{
+              fontWeight: "bold",
+              fontSize: "16px",
+            }}
+            sx={{ paddingY: "3px" }}
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="warning"
+            onClick={handleLogin}
+          >
+            Sign In
+          </Button>
+          <Grid container>
+            <Grid item marginY="10px">
+              <Link href="#" fontSize="14px" color="#fff" >
+                {"Don't have an account? Sign Up"}
+              </Link>
             </Grid>
-          </div>
-        </Grid>
+          </Grid>
+        </div>
+      </Grid>
     </Modal>
   );
 }
